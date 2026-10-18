@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Marvel Verse — catálogo de personagens Marvel com dados de uma API pública, pesquisa e curiosidades sobre desenhos dos anos 90 e 2000.">
+  <title>Marvel Verse | Personagens</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <header class="nav" id="nav">
+    <a href="#inicio" class="logo">
+      <span class="logo-mark">M</span>
+      <span>Marvel<b>Verse</b></span>
+    </a>
+
+    <nav aria-label="Navegação principal">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#personagens">Personagens</a></li>
+        <li><a href="#sobre">Anos 90 &amp; 2000</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="menu-btn" id="menu-btn" aria-label="Abrir menu" aria-controls="nav-links" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section id="inicio" class="hero">
+      <div class="hero-text reveal">
+        <p class="eyebrow">Anos 90 &amp; 2000 • Personagens via API</p>
+        <h1>As histórias que fizeram a gente amar a <span class="grad">Marvel</span></h1>
+        <p class="lead">
+          Dos quadrinhos às tardes em frente à TV: reencontre os personagens que marcaram os anos 90 e 2000. Explore histórias, descubra poderes e escolha seus favoritos.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#personagens" class="btn btn-primary">Explorar personagens</a>
+          <a href="#sobre" class="btn btn-ghost">Relembre os desenhos</a>
+        </div>
+
+        <!-- Números preenchidos pelo JavaScript a partir da API -->
+        <div class="stats">
+          <div class="stat"><strong data-stat="total">--</strong><span>Personagens</span></div>
+          <div class="stat"><strong data-stat="good">--</strong><span>Heróis</span></div>
+          <div class="stat"><strong data-stat="bad">--</strong><span>Vilões</span></div>
+        </div>
+      </div>
+
+      <!-- Carrossel 3D (itens criados pelo JavaScript) -->
+      <div class="hero-3d" id="hero-3d" aria-label="Ilustração em destaque">
+        <div class="hero-cover" role="img" aria-label="Ilustração do Wolverine em destaque"></div>
+        <div class="scene" id="scene" aria-hidden="true">
+          <div class="carousel" id="carousel"></div>
+        </div>
+        <div class="floor"></div>
+        <p class="hero-3d-label">O melhor dos quadrinhos • Anos 90 e 2000</p>
+      </div>
+    </section>
+
+    <!-- ===== PERSONAGENS (CARDS DA API) ===== -->
+    <section id="personagens" class="section" aria-labelledby="titulo-personagens">
+      <div class="section-head reveal">
+        <p class="eyebrow">Consumo da API</p>
+        <h2 id="titulo-personagens">Personagens</h2>
+        <p>De heróis lendários a vilões inesquecíveis. Explore o catálogo, encontre seus favoritos e veja os atributos de cada personagem.</p>
+      </div>
+
+      <div class="toolbar reveal">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="search" placeholder="Buscar personagem..." aria-label="Buscar personagem">
+        </label>
+
+        <div class="chips" id="filters" role="group" aria-label="Filtrar por alinhamento">
+          <button type="button" class="chip active" aria-pressed="true" data-filter="all">Todos</button>
+          <button type="button" aria-pressed="false" class="chip" data-filter="good">Heróis</button>
+          <button type="button" aria-pressed="false" class="chip" data-filter="bad">Vilões</button>
+          <button type="button" aria-pressed="false" class="chip" data-filter="neutral">Neutros</button>
+        </div>
+
+        <select id="sort" aria-label="Ordenar personagens">
+          <option value="name">Ordenar: Nome (A–Z)</option>
+          <option value="power">Ordenar: Poder total</option>
+          <option value="intelligence">Ordenar: Inteligência</option>
+          <option value="strength">Ordenar: Força</option>
+        </select>
+      </div>
+
+      <p class="result-info" id="result-info" role="status" aria-live="polite"></p>
+
+      <!-- O HTML só recebe os cards: tudo é criado dinamicamente no script.js -->
+      <div class="grid" id="cards" aria-busy="true"></div>
+
+      <div class="load-more-wrap">
+        <button type="button" class="btn btn-primary" id="load-more" hidden>Carregar mais</button>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre" class="section about" aria-labelledby="titulo-sobre">
+      <div class="section-head reveal">
+        <p class="eyebrow">Nostalgia</p>
+        <h2 id="titulo-sobre">A era de ouro dos desenhos Marvel</h2>
+        <p>Antes dos filmes dominarem o cinema, foi na TV que muita gente conheceu esses personagens.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="tl-item reveal"><span class="tl-year">1992–1997</span><h3>X-Men: A Série Animada</h3><p>Trouxe arcos longos dos quadrinhos para a TV e virou referência para toda uma geração.</p></article>
+        <article class="tl-item reveal"><span class="tl-year">1994–1998</span><h3>Homem-Aranha: A Série Animada</h3><p>Peter Parker enfrentando o Rei do Crime, o Duende Verde e o simbionte Venom.</p></article>
+        <article class="tl-item reveal"><span class="tl-year">1994–1996</span><h3>Quarteto Fantástico &amp; Homem de Ferro</h3><p>Exibidos juntos no bloco Marvel Action Hour, ampliando o universo na TV.</p></article>
+        <article class="tl-item reveal"><span class="tl-year">1996–1997</span><h3>O Incrível Hulk</h3><p>Bruce Banner dividido entre a ciência e a fúria do gigante esmeralda.</p></article>
+        <article class="tl-item reveal"><span class="tl-year">2000–2003</span><h3>X-Men: Evolution</h3><p>Os mutantes reimaginados como adolescentes, apresentando os X-Men a uma nova geração.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Fonte dos dados: <a href="https://github.com/akabab/superhero-api" target="_blank" rel="noopener">SuperHero API (akabab)</a>, filtrados para personagens Marvel Comics.</p>
+    <p>Projeto acadêmico • ADS UniFECAF • Site não oficial, sem vínculo com a Marvel</p>
+  </footer>
+
+  <script src="assets/js/script.js" defer></script>
+</body>
+</html>
